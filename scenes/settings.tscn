@@ -1,0 +1,339 @@
+[gd_scene load_steps=6 format=3 uid="uid://603k3vy4p3f1"]
+
+[ext_resource type="Theme" uid="uid://cb2tqos08yhkd" path="res://assets/MinimalUI/MinimalUI.tres" id="1_8vxdm"]
+[ext_resource type="Script" path="res://scripts/settings.gd" id="2_7yy6c"]
+[ext_resource type="Script" path="res://scripts/video.gd" id="2_u8ap5"]
+[ext_resource type="Script" path="res://scripts/audio.gd" id="3_t3cm1"]
+[ext_resource type="PackedScene" uid="uid://v37pld2ul4n6" path="res://scenes/action_button.tscn" id="4_qu75p"]
+
+[node name="Settings" type="TabContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_8vxdm")
+theme_override_font_sizes/font_size = 16
+script = ExtResource("2_7yy6c")
+
+[node name="Video" type="TabBar" parent="."]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Controls")
+focus_neighbor_right = NodePath("../Audio")
+focus_neighbor_bottom = NodePath("HBoxContainer/VBoxContainer2/Fullscreen")
+theme = ExtResource("1_8vxdm")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("2_u8ap5")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Video"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -105.0
+offset_right = 68.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Video/HBoxContainer"]
+layout_mode = 2
+
+[node name="Fullscreen" type="Label" parent="Video/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+focus_mode = 1
+theme_override_font_sizes/font_size = 24
+text = "Fullscreen"
+
+[node name="Borderless" type="Label" parent="Video/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "Borderless"
+
+[node name="Vsync" type="Label" parent="Video/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "Vsync"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Video/HBoxContainer"]
+layout_mode = 2
+
+[node name="Fullscreen" type="CheckBox" parent="Video/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../../..")
+focus_neighbor_bottom = NodePath("../Borderless")
+focus_next = NodePath("../Borderless")
+
+[node name="Borderless" type="CheckBox" parent="Video/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Fullscreen")
+focus_neighbor_bottom = NodePath("../Vsync")
+
+[node name="Vsync" type="OptionButton" parent="Video/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Borderless")
+focus_neighbor_bottom = NodePath("../../../Back")
+theme = ExtResource("1_8vxdm")
+theme_override_font_sizes/font_size = 24
+item_count = 4
+selected = 1
+popup/item_0/text = "Disabled"
+popup/item_0/id = 0
+popup/item_1/text = "Enabled"
+popup/item_1/id = 1
+popup/item_2/text = "Adaptive"
+popup/item_2/id = 2
+popup/item_3/text = "Mailbox"
+popup/item_3/id = 3
+
+[node name="Back" type="Button" parent="Video"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -119.0
+offset_top = -54.0
+offset_right = -19.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_neighbor_top = NodePath("../HBoxContainer/VBoxContainer2/Vsync")
+focus_neighbor_bottom = NodePath("../HBoxContainer/VBoxContainer2/Fullscreen")
+theme = ExtResource("1_8vxdm")
+theme_override_font_sizes/font_size = 24
+text = "Back"
+
+[node name="Audio" type="TabBar" parent="."]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../Video")
+focus_neighbor_right = NodePath("../Controls")
+focus_neighbor_bottom = NodePath("HBoxContainer/VBoxContainer2/Master")
+theme = ExtResource("1_8vxdm")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("3_t3cm1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Audio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -91.0
+offset_right = 157.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Audio/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Master" type="Label" parent="Audio/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+focus_mode = 1
+theme_override_font_sizes/font_size = 24
+text = "Master
+"
+
+[node name="Music" type="Label" parent="Audio/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+focus_mode = 1
+theme_override_font_sizes/font_size = 24
+text = "Music"
+
+[node name="SoundEffects" type="Label" parent="Audio/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+focus_mode = 1
+theme_override_font_sizes/font_size = 24
+text = "Sound Effects"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Audio/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Master" type="HSlider" parent="Audio/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../../..")
+focus_neighbor_bottom = NodePath("../Music")
+max_value = 1.0
+step = 0.05
+
+[node name="Music" type="HSlider" parent="Audio/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Master")
+focus_neighbor_bottom = NodePath("../SoundEffects")
+max_value = 1.0
+step = 0.05
+
+[node name="SoundEffects" type="HSlider" parent="Audio/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Music")
+focus_neighbor_bottom = NodePath("../../../Back")
+max_value = 1.0
+step = 0.05
+
+[node name="Back" type="Button" parent="Audio"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -119.0
+offset_top = -54.0
+offset_right = -19.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_neighbor_top = NodePath("../HBoxContainer/VBoxContainer2/SoundEffects")
+focus_neighbor_bottom = NodePath("../HBoxContainer/VBoxContainer2/Master")
+theme = ExtResource("1_8vxdm")
+theme_override_font_sizes/font_size = 24
+text = "Back"
+
+[node name="Controls" type="TabBar" parent="."]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../Audio")
+focus_neighbor_right = NodePath("../Video")
+focus_neighbor_bottom = NodePath("HBoxContainer/VBoxContainer2/Up")
+theme = ExtResource("1_8vxdm")
+theme_override_font_sizes/font_size = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -81.0
+offset_right = 114.0
+offset_bottom = 83.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Controls/HBoxContainer"]
+layout_mode = 2
+
+[node name="Up" type="Label" parent="Controls/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "Up
+"
+
+[node name="Down" type="Label" parent="Controls/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "Down"
+
+[node name="Left" type="Label" parent="Controls/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "Left"
+
+[node name="Right" type="Label" parent="Controls/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "Right"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Controls/HBoxContainer"]
+layout_mode = 2
+
+[node name="Up" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_qu75p")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../../..")
+focus_neighbor_bottom = NodePath("../Down")
+
+[node name="Down" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_qu75p")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Up")
+focus_neighbor_bottom = NodePath("../Left")
+action = "Down"
+
+[node name="Left" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_qu75p")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Down")
+focus_neighbor_bottom = NodePath("../Right")
+action = "Left"
+
+[node name="Right" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_qu75p")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Left")
+focus_neighbor_bottom = NodePath("../../../Back")
+action = "Right"
+
+[node name="Back" type="Button" parent="Controls"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -119.0
+offset_top = -54.0
+offset_right = -19.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+focus_neighbor_top = NodePath("../HBoxContainer/VBoxContainer2/Right")
+focus_neighbor_bottom = NodePath("../HBoxContainer/VBoxContainer2/Up")
+theme = ExtResource("1_8vxdm")
+theme_override_font_sizes/font_size = 24
+text = "Back"
+
+[connection signal="toggled" from="Video/HBoxContainer/VBoxContainer2/Fullscreen" to="Video" method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="Video/HBoxContainer/VBoxContainer2/Borderless" to="Video" method="_on_borderless_toggled"]
+[connection signal="item_selected" from="Video/HBoxContainer/VBoxContainer2/Vsync" to="Video" method="_on_vsync_item_selected"]
+[connection signal="pressed" from="Video/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="Audio/HBoxContainer/VBoxContainer2/Master" to="Audio" method="_on_master_value_changed"]
+[connection signal="value_changed" from="Audio/HBoxContainer/VBoxContainer2/Music" to="Audio" method="_on_music_value_changed"]
+[connection signal="value_changed" from="Audio/HBoxContainer/VBoxContainer2/SoundEffects" to="Audio" method="_on_sound_effects_value_changed"]
+[connection signal="pressed" from="Audio/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Controls/Back" to="." method="_on_back_pressed"]
